@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Motor Health Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">⚙</div>
+      <div>
+        <h1>Smart Motor <span>Health Monitoring System</span></h1>
+        <p>Edge AI Based Predictive Maintenance for Industrial Motors</p>
+      </div>
+    </div>
+    <div class="top-status">
+      <span class="online-dot"></span> System Online
+      <span class="date" id="clock">Loading...</span>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <a class="nav active" href="#dashboard">⌂ <span>Dashboard</span></a>
+    <a class="nav" href="#charts">⌁ <span>Live Data</span></a>
+    <a class="nav" href="#motor-status">♥ <span>Motor Status</span></a>
+    <a class="nav" href="#charts">▥ <span>Historical Data</span></a>
+    <a class="nav" href="#settings">⚙ <span>Settings</span></a>
+    <a class="nav" href="#about">ⓘ <span>About</span></a>
+  </aside>
+
+  <main id="dashboard" class="main">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">INDUSTRIAL IOT • EDGE AI</p>
+        <h2>Induction Motor <span>Monitoring</span></h2>
+        <div class="running"><span class="online-dot"></span> Motor Running</div>
+        <div class="motor-details">
+          <p>Motor Type <span>Three-Phase Induction Motor</span></p>
+          <p>Application <span>Conveyor Belt System</span></p>
+          <p>Industry <span>Food Processing Industry</span></p>
+        </div>
+      </div>
+      <div class="health-box" id="motor-status">
+        <div class="shield">✓</div>
+        <div>
+          <p>Motor Health</p>
+          <h3 id="health-text">Normal</h3>
+          <small id="health-detail">No anomaly detected</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="sensor-grid">
+      <article class="sensor-card temperature">
+        <div class="card-heading">
+          <span>🌡 Temperature</span><small>°C</small>
+        </div>
+        <div class="gauge-layout">
+          <div class="gauge" id="temp-gauge" style="--progress:38.6%">
+            <div class="gauge-inner">
+              <strong id="temp-value">38.6</strong>
+              <small>°C</small>
+            </div>
+          </div>
+          <div class="sensor-info">
+            <p>Normal Range</p><strong>0 – 80 °C</strong>
+            <hr>
+            <p>Status</p>
+            <strong class="status-text" id="temp-status">● Normal</strong>
+          </div>
+        </div>
+        <div class="card-foot">🌡 <span id="temp-message">Stable temperature</span></div>
+      </article>
+
+      <article class="sensor-card vibration">
+        <div class="card-heading">
+          <span>〰 Vibration</span><small>Digital</small>
+        </div>
+        <div class="gauge-layout">
+          <div class="digital-gauge" id="vib-gauge">
+            <div class="gauge-inner">
+              <strong id="vib-value">0</strong>
+            </div>
+          </div>
+          <div class="sensor-info">
+            <p>Digital Input</p><strong>GPIO / Digital</strong>
+            <hr>
+            <p>Meaning</p>
+            <strong class="status-text" id="vib-status">● No Vibration</strong>
+          </div>
+        </div>
+        <div class="card-foot">〰 <span id="vib-message">No abnormal vibration detected</span></div>
+      </article>
+
+      <article class="sensor-card current">
+        <div class="card-heading">
+          <span>ϟ Current</span><small>A</small>
+        </div>
+        <div class="gauge-layout">
+          <div class="gauge current-gauge" id="current-gauge" style="--progress:27.1%">
+            <div class="gauge-inner">
+              <strong id="current-value">5.42</strong>
+              <small>A</small>
+            </div>
+          </div>
+          <div class="sensor-info">
+            <p>Illustrative Range</p><strong>0 – 20 A</strong>
+            <hr>
+            <p>Status</p>
+            <strong class="status-text" id="current-status">● Normal</strong>
+          </div>
+        </div>
+        <div class="card-foot">ϟ <span id="current-message">Current within configured range</span></div>
+      </article>
+    </section>
+
+    <section class="chart-grid" id="charts">
+      <article class="chart-card">
+        <div class="chart-heading"><span>🌡 Temperature Trend</span><small>°C</small></div>
+        <div class="chart-wrap"><canvas id="tempChart"></canvas></div>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><span>〰 Vibration Status</span><small>Digital</small></div>
+        <div class="chart-wrap"><canvas id="vibChart"></canvas></div>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><span>ϟ Current Trend</span><small>A</small></div>
+        <div class="chart-wrap"><canvas id="currentChart"></canvas></div>
+      </article>
+    </section>
+
+    <section class="bottom-grid" id="settings">
+      <article class="small-panel">
+        <h3>System Information</h3>
+        <p>Controller <strong>STM32F407VGT6</strong></p>
+        <p>AI Processing <strong>Edge Anomaly Detection</strong></p>
+        <p>Connectivity <strong>IoT Cloud</strong></p>
+      </article>
+      <article class="small-panel" id="about">
+        <h3>Data Connection</h3>
+        <p>Dashboard mode <strong id="connection-mode">Demo Data</strong></p>
+        <p>Last update <strong id="last-update">Waiting...</strong></p>
+        <p class="disclaimer">Sample values are for interface testing only.</p>
+      </article>
+    </section>
+
+    <footer>© 2026 Smart Motor Health Monitoring System | Final Year Project</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
